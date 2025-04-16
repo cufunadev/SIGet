@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Documentos Enviados</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Solicitação</th>
+                <th>Arquivo</th>
+                <th>Tipo</th>
+                <th>Data de Upload</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in documentos %}
+            <tr>
+                <td>{{ doc.solicitacao.id }}</td>
+                <td><a href="{{ doc.nome_arquivo.url }}" target="_blank">Ver Arquivo</a></td>
+                <td>{{ doc.tipo }}</td>
+                <td>{{ doc.data_upload|date:"d/m/Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Terrenos</h1>
+<a href="{% url 'cadastrar_terreno' %}" class="btn btn-success mb-3">Cadastrar Novo Terreno</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Localização</th>
+            <th>Metragem</th>
+            <th>Preço</th>
+            <th>Finalidade</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if terrenos %}
+            {% for terreno in terrenos %}
+            <tr>
+                <td>{{ terreno.localizacao }}</td>
+                <td>{{ terreno.metragem }} m²</td>
+                <td>{{ terreno.preco }} Kz</td>
+                <td>{{ terreno.finalidade }}</td>
+                <td>
+                    <a href="{% url 'editar_terreno' terreno.id %}" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="{% url 'excluir_terreno' terreno.id %}" class="btn btn-sm btn-danger">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center text-muted">Cufuna Nenhum terreno cadastrado </td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
